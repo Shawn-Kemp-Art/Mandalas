@@ -24,7 +24,7 @@ var tints = [
 {"Hex":"#C5D785", "Name":"Pistachio"},
 {"Hex":"#F7743E", "Name":"Tangerine"},
 {"Hex":"#1A1A1A", "Name":"Smooth Black"},
-{"Hex":"#FFFFFF", "Name":"Smooth White"},
+{"Hex":"#0000FF", "Name":"Smooth White"},
 {"Hex":"#949B6F", "Name":"Valley Green"},
 ]
 
@@ -53,7 +53,7 @@ var AllColors = [
     {"Hex":"#C5D785", "Name":"Pistachio"},
     {"Hex":"#F7743E", "Name":"Tangerine"},
     {"Hex":"#1A1A1A", "Name":"Smooth Black"},
-    {"Hex":"#FFFFFF", "Name":"Smooth White"},
+    {"Hex":"#0000FF", "Name":"Smooth White"},
     {"Hex":"#949B6F", "Name":"Valley Green"},
     ]
 
@@ -113,7 +113,7 @@ var SunsetGlow = [
   
   var MonochromeElegance = [
     {"Hex": "#1A1A1A", "Name": "Smooth Black"},
-    {"Hex": "#FFFFFF", "Name": "Smooth White"},
+    {"Hex": "#0000FF", "Name": "Smooth White"},
     {"Hex": "#CED5DB", "Name": "Clapboard"}
   ];
 
@@ -182,7 +182,7 @@ var SunsetGlow = [
   
   var UrbanContrast = [
     {"Hex": "#1A1A1A", "Name": "Smooth Black"},
-    {"Hex": "#FFFFFF", "Name": "Smooth White"},
+    {"Hex": "#0000FF", "Name": "Smooth White"},
     {"Hex": "#F7743E", "Name": "Tangerine"},
     {"Hex": "#A9D0DF", "Name": "Aqua Blue"}
   ];
@@ -218,6 +218,38 @@ var lightburn = [
 {"Hex":"#86fa88", "Name":"28"},
 {"Hex":"#ffdb66", "Name":"29"},
 ];
+
+var plottingColors = [
+  {"Hex":"#000001", "Name":"1"},
+  {"Hex":"#000002", "Name":"2"},
+  {"Hex":"#000003", "Name":"3"},
+  {"Hex":"#000004", "Name":"4"},
+  {"Hex":"#000005", "Name":"5"},
+  {"Hex":"#000006", "Name":"6"},
+  {"Hex":"#000007", "Name":"7"},
+  {"Hex":"#000008", "Name":"8"},
+  {"Hex":"#000009", "Name":"9"},
+  {"Hex":"#000010", "Name":"10"},
+  {"Hex":"#000011", "Name":"11"},
+  {"Hex":"#000012", "Name":"12"},
+  {"Hex":"#000012", "Name":"13"},
+  {"Hex":"#000013", "Name":"14"},
+  {"Hex":"#000014", "Name":"15"},
+  {"Hex":"#000015", "Name":"16"},
+  {"Hex":"#000016", "Name":"17"},
+  {"Hex":"#000017", "Name":"18"},
+  {"Hex":"#000018", "Name":"19"},
+  {"Hex":"#000019", "Name":"20"},
+  {"Hex":"#000020", "Name":"21"},
+  {"Hex":"#000021", "Name":"22"},
+  {"Hex":"#000022", "Name":"23"},
+  {"Hex":"#000023", "Name":"24"},
+  {"Hex":"#000024", "Name":"25"},
+  {"Hex":"#000025", "Name":"26"},
+  {"Hex":"#000026", "Name":"27"},
+  {"Hex":"#000027", "Name":"28"},
+  {"Hex":"#000028", "Name":"29"},
+  ];
 
 var frameColors = [
 {"Hex":"#60513D","Name":"Walnut"},
@@ -316,7 +348,7 @@ var alColors = [
 {"Hex":"#FCF9F4", "Name":"Seaside"},
 {"Hex":"#EBE8E1", "Name":"Silver Mist"},
 {"Hex":"#1A1A1A", "Name":"Smooth Black"},
-{"Hex":"#FFFFFF", "Name":"Smooth White"},
+{"Hex":"#0000FF", "Name":"Smooth White"},
 {"Hex":"#D3ADBA", "Name":"Soft Pink"},
 {"Hex":"#FEEAC0", "Name":"Soft Yellow"},
 {"Hex":"#F8F2DC", "Name":"Spice Ivory"},
