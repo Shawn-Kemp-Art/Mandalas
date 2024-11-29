@@ -43,15 +43,14 @@ definitions = [
         id: "aspectratio",
         name: "Aspect ratio",
         type: "select",
-        default: "4:5",
-        options: {options: ["1:1", "2:5","3:5","4:5","54:86","296:420"]},
+        default: "circle",
+        options: {options: ["circle","1:1", "2:5","3:5","4:5","54:86","296:420"]},
     },
     {
         id: "orientation",
         name: "Orientation",
         type: "select",
-        default: "portrait",
-        options: {options: ["portrait", "landscape"]},
+        options: {options: ["portrait","landscape"]},
     },
     {
         id: "size",
@@ -67,7 +66,7 @@ definitions = [
         default: 2,
         options: {
             min: 1,
-            max: 6,
+            max: 12,
             step: 1,
         },  
     },
@@ -100,7 +99,7 @@ definitions = [
         id: "originy",
         name: "Origin Y",
         type: "number",
-        default: 500,
+        default: 400,
         options: {
             min: 100,
             max: 900,
@@ -114,7 +113,18 @@ definitions = [
         default: 50,
         options: {
             min: 25,
-            max: 125,
+            max: 200,
+            step: 1,
+        },  
+    },
+    {
+        id: "linethickness",
+        name: "line thickness",
+        type: "number",
+        default: 12,
+        options: {
+            min: 6,
+            max: 24,
             step: 1,
         },  
     },
@@ -148,6 +158,7 @@ var numofcolors = $fx.getParam('colors');
 var wide = 800; 
 var high = 1000; 
 
+if ($fx.getParam('aspectratio')== "circle"){wide = 800; high = 800};
 if ($fx.getParam('aspectratio')== "1:1"){wide = 800; high = 800};
 if ($fx.getParam('aspectratio')== "2:5"){wide = 400; high = 1000};
 if ($fx.getParam('aspectratio')== "3:5"){wide = 600; high = 1000};
@@ -158,7 +169,9 @@ if ($fx.getParam('aspectratio')== "296:420"){wide =705; high = 1000};
 
 
 var ratio = 1/scale;//use 1/4 for 32x40 - 1/3 for 24x30 - 1/2 for 16x20 - 1/1 for 8x10
-var minOffset = ~~(7*ratio); //this is aproximatly .125"
+var minOffset = ~~(6*ratio); //this is aproximatly .125"
+var minOffset = ~~($fx.getParam('linethickness')*ratio);
+
 var framewidth = ~~($fx.getParam('matwidth')*ratio*scale); 
 var framradius = 0;
 
@@ -199,7 +212,7 @@ w=wide;h=high;
 var orientation="Portrait";
  
 if ($fx.getParam('orientation')=="landscape"){wide = h;high = w;orientation="Landscape";};
-if ($fx.getParam('orientation')=="square"){wide = w;high = w;orientation="Square";};
+if ($fx.getParam('orientation')=="circular"){var circular=2};
 if ($fx.getParam('orientation')=="portrait"){wide = w;high = h;orientation="Portrait";};
 
 
@@ -242,7 +255,7 @@ segments[3] = 40;
 var shapes = [pizza,diamond,elipsoid,pointyoval]
 
 os = ~~(center.getDistance(new Point(wide,0)))
-console.log(os)
+
 
 
 var rings =[];
@@ -353,12 +366,12 @@ for (z = 0; z < stacks; z++) {
 
         }
         
-    if (orientation=="Square" && circular==2){frameIt(z,1);} else {frameIt(z,0);}// finish the layer with a final frame cleanup 
+    if ($fx.getParam('aspectratio')=="circle"){frameIt(z,1);} else {frameIt(z,0);}// finish the layer with a final frame cleanup 
 
     cutMarks(z);
     hanger(z);// add cut marks and hanger holes
     if (z == stacks-1) {signature(z);}// sign the top layer
-    sheet[z].scale(2.2);
+    sheet[z].scale(2.3);
     sheet[z].position = new Point(paper.view.viewSize.width/2, paper.view.viewSize.height/2);
    
     var group = new Group(sheet[z]);
@@ -389,24 +402,16 @@ for (z = 0; z < stacks; z++) {
     $fx.features(features);
     //$fx.preview();
 
-    if (orientation=="Square" && circular==2){}else{floatingframe();}
+    //if (orientation=="Square" && circular==2){}else{floatingframe();}
      //upspirestudio(features); //#render and send features to upspire.studio
 
 
-      var finalTime = new Date().getTime();
+    var finalTime = new Date().getTime();
     var renderTime = (finalTime - initialTime)/1000
     console.log ('Render took : ' +  renderTime.toFixed(2) + ' seconds' );
 
 
-        //if (testingGo == 'true'){refreshit();}
 
-        async function refreshit() {
-        //setquery("fxhash",null);
-        await new Promise(resolve => setTimeout(resolve, 5000)); // 3 sec
-        canvas.toBlob(function(blob) {saveAs(blob, tokenData.hash+' - '+renderTime.toFixed(0)+'secs.png');});
-        await new Promise(resolve => setTimeout(resolve, 5000)); // 3 sec
-        window.open('file:///Users/shawnkemp/dev/dotandslide/DotandSlide/index.html?testing=true', '_blank');
-        }
 
 //vvvvvvvvvvvvvvv PROJECT FUNCTIONS vvvvvvvvvvvvvvv 
  
@@ -666,10 +671,19 @@ function cut(z,s){
 }
 
 function drawFrame(z){
-    var outsideframe = new Path.Rectangle(new Point(0, 0),new Size(wide, high), framradius)
-    var insideframe = new Path.Rectangle(new Point(framewidth, framewidth),new Size(wide-framewidth*2, high-framewidth*2)) 
-    if (orientation=="Square" && circular==2){var outsideframe = new Path.Circle(new Point(wide/2, wide/2),wide/2);}
-    if (orientation=="Square" && circular==2){var insideframe = new Path.Circle(new Point(wide/2, wide/2),wide/2-framewidth);}
+    if ($fx.getParam('aspectratio') == "circle"){
+        var outsideframe = new Path.Circle(new Point(wide/2, wide/2),wide/2);
+        var insideframe = new Path.Circle(new Point(wide/2, wide/2),wide/2-framewidth);
+    } else{
+        var outsideframe = new Path.Rectangle(new Point(0, 0),new Size(wide, high), framradius);
+        var insideframe = new Path.Rectangle(new Point(framewidth, framewidth),new Size(wide-framewidth*2, high-framewidth*2));
+    }
+   
+    //if ($fx.getParam('aspectratio') != "circle") var outsideframe = new Path.Rectangle(new Point(0, 0),new Size(wide, high), framradius)
+    //if ($fx.getParam('aspectratio') != "circle") var insideframe = new Path.Rectangle(new Point(framewidth, framewidth),new Size(wide-framewidth*2, high-framewidth*2)) 
+    
+    //if ($fx.getParam('aspectratio') == "circle"){var outsideframe = new Path.Circle(new Point(wide/2, wide/2),wide/2);}
+    //if ($fx.getParam('aspectratio') == "circle"){var insideframe = new Path.Circle(new Point(wide/2, wide/2),wide/2-framewidth);}
 
 
     sheet[z] = outsideframe.subtract(insideframe);
