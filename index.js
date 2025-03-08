@@ -58,7 +58,7 @@ definitions = [
         id: "aspectratio",
         name: "Aspect ratio",
         type: "select",
-        options: {options: ["circle","4:5"]},
+        options: {options: ["1:1","circle","4:5"]},
         //options: {options: ["circle","1:1", "2:5","3:5","4:5","54:86","296:420"]},
     },
     {
