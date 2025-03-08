@@ -27,6 +27,21 @@ var seed = Math.floor($fx.rand()*10000000000000000);
 var noise = new perlinNoise3d();
 noise.noiseSeed(seed);
 
+//read in query strings
+var qcolor1 = "AllColors";
+if(new URLSearchParams(window.location.search).get('c1')){qcolor1 = new URLSearchParams(window.location.search).get('c1')}; //colors1
+var qcolor2 = "None";
+if(new URLSearchParams(window.location.search).get('c2')){qcolor2 = new URLSearchParams(window.location.search).get('c2')}; //colors2
+var qcolor3 = "None";
+if(new URLSearchParams(window.location.search).get('c3')){qcolor3 = new URLSearchParams(window.location.search).get('c3')}; //colors3
+var qcolors = R.random_int(1,6);
+if(new URLSearchParams(window.location.search).get('c')){qcolors = new URLSearchParams(window.location.search).get('c')}; //number of colors
+var qsize = "2";
+if(new URLSearchParams(window.location.search).get('s')){qsize = new URLSearchParams(window.location.search).get('s')}; //size
+var qcomplexity = R.random_int(1,10);
+if(new URLSearchParams(window.location.search).get('d')){qcomplexity = new URLSearchParams(window.location.search).get('d')}; //size
+qcomplexity=qcomplexity*25
+
 definitions = [
     {
         id: "layers",
@@ -43,8 +58,8 @@ definitions = [
         id: "aspectratio",
         name: "Aspect ratio",
         type: "select",
-        default: "circle",
-        options: {options: ["circle","1:1", "2:5","3:5","4:5","54:86","296:420"]},
+        options: {options: ["circle","4:5"]},
+        //options: {options: ["circle","1:1", "2:5","3:5","4:5","54:86","296:420"]},
     },
     {
         id: "orientation",
@@ -56,17 +71,17 @@ definitions = [
         id: "size",
         name: "Size",
         type: "select",
-        default: "2",
+        default: qsize,
         options: {options: ["1", "2", "3"]},
     },
     {
         id: "colors",
         name: "Max # of colors",
         type: "number",
-        default: 2,
+        default: qcolors,
         options: {
             min: 1,
-            max: 12,
+            max: 6,
             step: 1,
         },  
     },
@@ -74,35 +89,33 @@ definitions = [
         id: "colors1",
         name: "Pallete 1",
         type: "select",
-        default: "AllColors",
+        default: qcolor1,
         options: {options: palleteNames},
     },
     {
         id: "colors2",
         name: "Pallete 2",
         type: "select",
-        default: "None",
+        default: qcolor2,
         options: {options: palleteNames},
     },
     {
         id: "colors3",
         name: "Pallete 3",
         type: "select",
-        default: "None",
+        default: qcolor3,
         options: {options: palleteNames},
     },
     {
         id: "framecolor",
         name: "Frame color",
         type: "select",
-        default: "White",
         options: {options: ["Random","White","Mocha"]},
     },
     {
         id: "originx",
         name: "Origin X",
         type: "number",
-        default: 400,
         options: {
             min: 100,
             max: 900,
@@ -113,7 +126,6 @@ definitions = [
         id: "originy",
         name: "Origin Y",
         type: "number",
-        default: 400,
         options: {
             min: 100,
             max: 900,
@@ -124,7 +136,7 @@ definitions = [
         id: "ringlets",
         name: "Spread",
         type: "number",
-        default: 50,
+        default: qcomplexity,
         options: {
             min: 25,
             max: 200,
@@ -135,7 +147,7 @@ definitions = [
         id: "linethickness",
         name: "line thickness",
         type: "number",
-        default: 12,
+        default: 8,
         options: {
             min: 6,
             max: 24,
