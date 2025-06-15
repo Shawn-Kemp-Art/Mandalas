@@ -233,6 +233,7 @@ if ($fx.getParam('framecolor')=="Mocha"){colors[stacks-1]={"Hex":"#4C4638", "Nam
 
 var woodframe = new Path();var framegap = new Path();
 var fColor = frameColors[0];
+fColor = {"Hex":"#60513D","Name":"Walnut"};
 var frameColor = fColor.Hex;
 
 //adjust the canvas dimensions
