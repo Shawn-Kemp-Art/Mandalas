@@ -431,6 +431,15 @@ for (z = 0; z < stacks; z++) {
     $fx.features(features);
     //$fx.preview();
 
+        //add a white background layer
+        outsideframe = new Path.Rectangle(new Point(0,0),new Size(wide, high), framradius)
+        sheet[stacks+1] = outsideframe;
+        sheet[stacks+1].style = {fillColor: "#ffffff", strokeColor: linecolor.Hex, strokeWidth: 1*ratio,shadowColor: new Color(0,0,0,[0.3]),shadowBlur: 20,shadowOffset: new Point((stacks-z)*2.3, (stacks-z)*2.3)};
+        sheet[stacks+1].scale(2.2);
+        sheet[stacks+1].position = new Point(paper.view.viewSize.width/2, paper.view.viewSize.height/2);
+        sheet[stacks+1].sendToBack();
+
+
     //if (orientation=="Square" && circular==2){}else{floatingframe();}
      //upspirestudio(features); //#render and send features to upspire.studio
 
@@ -808,6 +817,7 @@ document.addEventListener('keypress', (event) => {
 
        //Save as SVG 
        if(event.key == "v") {
+        sheet[stacks+1].remove();
             var url = "data:image/svg+xml;utf8," + encodeURIComponent(paper.project.exportSVG({asString:true}));
             var key = [];for (l=stacks;l>0;l--){key[stacks-l] = colors[l-1].Name;}; 
             var svg1 = "<!--"+key+"-->" + paper.project.exportSVG({asString:true})
