@@ -46,7 +46,7 @@ var qorientation =R.random_int(0,2) < 1 ? "portrait" : "landscape";
 var qframecolor = R.random_int(0,3) < 1 ? "White" : R.random_int(1,3) < 2 ? "Mocha" : "Random";
 var qoriginx = R.random_int(100,900);
 var qoriginy = R.random_int(100,900);
-var qlinethickness = R.random_int(6,24);
+var qlinethickness = R.random_int(6,14);console.log(qlinethickness)
 var qmatwidth = R.random_int(50,100);
 var qaspectratio = "4:5";
 
