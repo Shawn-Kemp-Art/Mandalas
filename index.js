@@ -42,13 +42,13 @@ var qcomplexity = R.random_int(1,10);
 if(new URLSearchParams(window.location.search).get('d')){qcomplexity = new URLSearchParams(window.location.search).get('d')}; //size
 qcomplexity=qcomplexity*25
 
-var qorientation =R.random_int(1,2) < 2 ? "portrait" : "landscape";
-var qframecolor = R.random_int(1,3) < 1 ? "White" : R.random_int(1,3) < 2 ? "Mocha" : "Random";
+var qorientation =R.random_int(0,2) < 1 ? "portrait" : "landscape";
+var qframecolor = R.random_int(0,3) < 1 ? "White" : R.random_int(1,3) < 2 ? "Mocha" : "Random";
 var qoriginx = R.random_int(100,900);
 var qoriginy = R.random_int(100,900);
 var qlinethickness = R.random_int(6,24);
 var qmatwidth = R.random_int(50,100);
-var qaspectratio = R.random_int(1,3) < 1 ? "1:1" : R.random_int(1,3) < 2 ? "circle" : "4:5";
+var qaspectratio = "4:5";
 
 
 definitions = [
