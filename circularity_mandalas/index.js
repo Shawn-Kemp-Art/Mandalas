@@ -958,7 +958,7 @@ document.addEventListener('keypress', (event) => {
 
 
         if(event.key == "f") {
-            floatingframe();
+            //floatingframe();
             
         }
         
