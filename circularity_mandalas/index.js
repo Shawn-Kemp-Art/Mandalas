@@ -514,6 +514,7 @@ for (z = 0; z < stacks; z++) {
        var content = JSON.stringify(features,null,2);
        await sendTextToBubbleAPI("Colors-"+$fx.hash, content)
        // 2. Add frame
+       /*
        floatingframe();
        paper.view.update();
        // 3. Framed PNGs (Black, White, Walnut, Maple)
@@ -531,6 +532,7 @@ for (z = 0; z < stacks; z++) {
        }
        // 4. Remove frame
        floatingframe();
+       */
        // 5. Blueprint SVG
        for (var z = 0; z < stacks; z++) {
            sheet[z].style = {
